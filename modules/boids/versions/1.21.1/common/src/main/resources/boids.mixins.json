@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.leclowndu93150.boids.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MobMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

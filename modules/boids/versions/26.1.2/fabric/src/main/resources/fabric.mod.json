@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "license": "${license}",
+  "icon": "assets/boids/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.leclowndu93150.boids.fabric.BoidsFabric"
+    ],
+    "modmenu": [
+      "com.leclowndu93150.boids.fabric.BoidsModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "~26.1.2",
+    "java": ">=${java_version}",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "yacl": "*"
+  }
+}

@@ -1,0 +1,9 @@
+# Changelog
+
+## 1.0.0
+
+- Initial multiloader release
+- Ported boids flocking simulation from Fabric to Forge and NeoForge
+- Replaced Jankson config with YACL config screen
+- Added Mod Menu integration on Fabric
+- Supported versions: 1.20.1, 1.21.1, 26.1.2

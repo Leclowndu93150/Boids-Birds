@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "license": "${license}",
+  "icon": "assets/birds/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.leclowndu93150.birds.fabric.BirdsFabric"
+    ],
+    "client": [
+      "com.leclowndu93150.birds.fabric.BirdsFabricClient"
+    ],
+    "modmenu": [
+      "com.leclowndu93150.birds.fabric.BirdsModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "~1.20.1",
+    "java": ">=${java_version}",
+    "boids": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "yacl": "*"
+  }
+}

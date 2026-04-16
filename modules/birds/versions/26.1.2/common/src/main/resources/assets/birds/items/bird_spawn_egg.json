@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "birds:item/bird_spawn_egg"
+  }
+}

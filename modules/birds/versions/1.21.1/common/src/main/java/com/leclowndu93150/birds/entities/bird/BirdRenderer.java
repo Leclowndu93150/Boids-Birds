@@ -1,0 +1,20 @@
+package com.leclowndu93150.birds.entities.bird;
+
+import com.leclowndu93150.birds.Birds;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+
+public class BirdRenderer extends MobRenderer<Bird, BirdModel<Bird>> {
+    private static final ResourceLocation TEXTURE_LOCATION = Birds.id("textures/entity/bird/bird.png");
+
+    public BirdRenderer(EntityRendererProvider.Context context) {
+        super(context, new BirdModel<>(context.bakeLayer(BirdModel.LAYER_LOCATION)), 0.5f);
+    }
+
+    @Override
+    public @NotNull ResourceLocation getTextureLocation(Bird entity) {
+        return TEXTURE_LOCATION;
+    }
+}
