@@ -8,6 +8,7 @@ version = "${version}"
 displayName = "${mod_name}"
 description = '''${description}'''
 authors = "${mod_author}"
+logoFile = "assets/birds/icon.png"
 
 [[dependencies.${mod_id}]]
 modId = "neoforge"
@@ -20,5 +21,19 @@ side = "BOTH"
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "boids"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "yet_another_config_lib_v3"
+type = "required"
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"

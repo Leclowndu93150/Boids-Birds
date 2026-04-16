@@ -28,7 +28,7 @@ prism {
 
             curseforge {
                 accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-                projectId = ""
+                projectId = "1515836"
             }
 
             mavenLocal()
@@ -136,7 +136,7 @@ prism {
 
             curseforge {
                 accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-                projectId = ""
+                projectId = "1515841"
             }
 
             maven {
@@ -146,7 +146,8 @@ prism {
             }
 
             dependencies {
-                requires("boids")
+                requires("boids-reforged")
+                requires("yacl")
             }
         }
 

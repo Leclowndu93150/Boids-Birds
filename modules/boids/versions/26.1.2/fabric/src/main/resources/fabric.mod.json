@@ -25,10 +25,10 @@
     "fabricloader": ">=${fabric_loader_version}",
     "minecraft": "~26.1.2",
     "java": ">=${java_version}",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "yet_another_config_lib_v3": "*"
   },
   "suggests": {
-    "modmenu": "*",
-    "yacl": "*"
+    "modmenu": "*"
   }
 }

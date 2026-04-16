@@ -8,6 +8,7 @@ version = "${version}"
 displayName = "${mod_name}"
 description = '''${description}'''
 authors = "${mod_author}"
+logoFile = "assets/birds/icon.png"
 
 [[dependencies.${mod_id}]]
 modId = "forge"
@@ -20,5 +21,19 @@ side = "BOTH"
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "boids"
+mandatory = true
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "yacl"
+mandatory = true
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
