@@ -18,7 +18,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +28,6 @@ public class Bird extends Mob {
 
     public Bird(EntityType<Bird> entityType, Level level) {
         super(entityType, level);
-        this.noCulling = true;
         flapOffset = getRandom().nextInt(0, 10);
     }
 
@@ -73,11 +71,6 @@ public class Bird extends Mob {
     @Override
     public boolean removeWhenFarAway(double distance) {
         return distance > 65536;
-    }
-
-    @Override
-    public AABB getBoundingBoxForCulling() {
-        return super.getBoundingBoxForCulling().inflate(256);
     }
 
     @Override
