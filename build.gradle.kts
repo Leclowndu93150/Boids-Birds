@@ -22,7 +22,7 @@ prism {
 
         publishing {
             changelogFile = "CHANGELOG.md"
-            type = BETA
+            type = STABLE
 
             publishCommonJar = true
 
@@ -45,8 +45,9 @@ prism {
         }
 
         version("1.20.1") {
+            version = "1.0.1"
             common {
-                compileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
+                modCompileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
             }
             fabric {
                 loaderVersion = "0.19.2"
@@ -132,7 +133,7 @@ prism {
 
         publishing {
             changelogFile = "CHANGELOG.md"
-            type = BETA
+            type = STABLE
 
             curseforge {
                 accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
@@ -152,15 +153,16 @@ prism {
         }
 
         version("1.20.1") {
+            version = "1.0.1"
             common {
-                compileOnly("com.leclowndu93150:boids-1.20.1-common:1.0.0")
-                compileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
+                modCompileOnly("com.leclowndu93150:boids-1.20.1-common:1.0.1")
+                modCompileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
             }
             fabric {
                 loaderVersion = "0.19.2"
                 fabricApi("0.92.8+1.20.1")
                 dependencies {
-                    modImplementation("com.leclowndu93150:boids-1.20.1-fabric:1.0.0")
+                    modImplementation("com.leclowndu93150:boids-1.20.1-fabric:1.0.1")
                     modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-fabric")
                     modCompileOnly("curse.maven:modmenu-308702:5162837")
                 }
@@ -174,7 +176,7 @@ prism {
                 loaderVersion = "47.4.18"
                 loaderVersionRange = "[47,)"
                 dependencies {
-                    implementation("com.leclowndu93150:boids-1.20.1-forge:1.0.0")
+                    modImplementation("com.leclowndu93150:boids-1.20.1-forge:1.0.1")
                     modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
                 }
             }

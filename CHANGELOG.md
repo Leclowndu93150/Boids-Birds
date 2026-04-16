@@ -1,5 +1,8 @@
 # Changelog
 
+#1.0.1
+fix crash with 1.20.1
+
 ## 1.0.0
 
 - Initial multiloader release

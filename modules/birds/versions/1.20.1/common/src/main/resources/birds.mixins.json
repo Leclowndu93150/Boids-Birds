@@ -2,6 +2,7 @@
   "required": true,
   "package": "com.leclowndu93150.birds.mixin",
   "compatibilityLevel": "JAVA_17",
+  "refmap": "birds.refmap.json",
   "mixins": [],
   "client": [],
   "injectors": {
