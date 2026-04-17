@@ -122,6 +122,9 @@ prism {
     }
 
     mod("birds") {
+
+        version = "1.0.2"
+
         metadata {
             modId = "birds"
             name = "Birds"
