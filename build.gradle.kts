@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.leclowndu93150"
-version = "1.0.0"
+version = "1.0.1"
 
 prism {
     curseMaven()
@@ -153,7 +153,6 @@ prism {
         }
 
         version("1.20.1") {
-            version = "1.0.1"
             common {
                 modCompileOnly("com.leclowndu93150:boids-1.20.1-common:1.0.1")
                 modCompileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
