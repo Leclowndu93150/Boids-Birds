@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.leclowndu93150"
-version = "1.0.1"
+version = "1.0.0"
 
 prism {
     curseMaven()
@@ -20,8 +20,10 @@ prism {
             credit("Tomate0613")
         }
 
+        version = "1.0.3"
+
         publishing {
-            changelogFile = "CHANGELOG.md"
+            changelog = "add support for a lot of modded fishes !"
             type = STABLE
 
             publishCommonJar = true
@@ -45,9 +47,8 @@ prism {
         }
 
         version("1.20.1") {
-            version = "1.0.1"
             common {
-                modCompileOnly("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
+                modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
             }
             fabric {
                 loaderVersion = "0.19.2"
@@ -66,13 +67,17 @@ prism {
                 loaderVersionRange = "[47,)"
                 dependencies {
                     modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.20.1-forge")
+                    modRuntimeOnly("curse.maven:aquaculture-60028:7331172")
+                    modRuntimeOnly("curse.maven:dragns-livestock-overhaul-1131669:7578482")
+                    modRuntimeOnly("curse.maven:geckolib-388172:7553267")
+                    modRuntimeOnly("curse.maven:patchouli-306770:7731017")
                 }
             }
         }
 
         version("1.21.1") {
             common {
-                compileOnly("dev.isxander:yet-another-config-lib:3.8.1+1.21.1-neoforge")
+                implementation("dev.isxander:yet-another-config-lib:3.8.1+1.21.1-neoforge")
             }
             fabric {
                 loaderVersion = "0.19.2"
@@ -91,13 +96,14 @@ prism {
                 loaderVersionRange = "[4,)"
                 dependencies {
                     implementation("dev.isxander:yet-another-config-lib:3.8.1+1.21.1-neoforge")
+                    runtimeOnly("curse.maven:aquaculture-60028:7901588")
                 }
             }
         }
 
         version("26.1.2") {
             common {
-                compileOnly("curse.maven:yacl-667299:7904437")
+                implementation("curse.maven:yacl-667299:7904437")
             }
             fabric {
                 loaderVersion = "0.19.2"
@@ -187,7 +193,7 @@ prism {
         version("1.21.1") {
             common {
                 compileOnly("com.leclowndu93150:boids-1.21.1-common:1.0.0")
-                compileOnly("dev.isxander:yet-another-config-lib:3.8.1+1.21.1-neoforge")
+                implementation("dev.isxander:yet-another-config-lib:3.8.1+1.21.1-neoforge")
             }
             fabric {
                 loaderVersion = "0.19.2"
@@ -216,7 +222,7 @@ prism {
         version("26.1.2") {
             common {
                 compileOnly("com.leclowndu93150:boids-26.1.2-common:1.0.0")
-                compileOnly("curse.maven:yacl-667299:7904437")
+                implementation("curse.maven:yacl-667299:7904437")
             }
             fabric {
                 loaderVersion = "0.19.2"

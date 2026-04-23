@@ -18,6 +18,55 @@ public class Boids {
     public static BoidsSimulation SETTINGS;
     public static Set<EntityType<?>> AFFECTED_ENTITIES = Collections.emptySet();
 
+    private static final List<String> FISH_PATTERNS = List.of(
+        "*cod",
+        "*salmon",
+        "*trout",
+        "*bass",
+        "*carp",
+        "*catfish",
+        "*perch",
+        "*pike",
+        "*walleye",
+        "*bluegill",
+        "*crappie",
+        "*sturgeon",
+        "*gar",
+        "*minnow",
+        "*herring",
+        "*anchovy",
+        "*sardine",
+        "*mackerel",
+        "*tuna",
+        "*swordfish",
+        "*marlin",
+        "*halibut",
+        "*flounder",
+        "*sole",
+        "*plaice",
+        "*pollock",
+        "*haddock",
+        "*grouper",
+        "*snapper",
+        "*barracuda",
+        "*tilapia",
+        "*piranha",
+        "*arapaima",
+        "*coelacanth",
+        "*anglerfish",
+        "*pufferfish",
+        "*blowfish",
+        "*clownfish",
+        "*fish",
+        "*muskellunge",
+        "*tambaqui",
+        "*boulti",
+        "*bayad",
+        "*capitaine",
+        "*synodontis",
+        "*shrooma"
+    );
+
     public static void loadConfig() {
         BoidsConfig.HANDLER.load();
         var config = BoidsConfig.HANDLER.instance();
@@ -45,6 +94,17 @@ public class Boids {
             entities.add(EntityType.TROPICAL_FISH);
         }
 
+        for (EntityType<?> type : BuiltInRegistries.ENTITY_TYPE) {
+            Identifier rl = BuiltInRegistries.ENTITY_TYPE.getKey(type);
+            String path = rl.getPath();
+            for (String pattern : FISH_PATTERNS) {
+                if (matchesWildcard(pattern, path)) {
+                    entities.add(type);
+                    break;
+                }
+            }
+        }
+
         for (String id : config.includedEntities) {
             var rl = Identifier.tryParse(id);
             if (rl != null) {
@@ -64,5 +124,16 @@ public class Boids {
 
     public static boolean isAffected(Entity entity) {
         return AFFECTED_ENTITIES.contains(entity.getType());
+    }
+
+    private static boolean matchesWildcard(String pattern, String text) {
+        if (pattern.startsWith("*") && pattern.endsWith("*")) {
+            return text.contains(pattern.substring(1, pattern.length() - 1));
+        } else if (pattern.startsWith("*")) {
+            return text.endsWith(pattern.substring(1));
+        } else if (pattern.endsWith("*")) {
+            return text.startsWith(pattern.substring(0, pattern.length() - 1));
+        }
+        return text.equals(pattern);
     }
 }
