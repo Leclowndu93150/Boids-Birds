@@ -1,15 +1,14 @@
 package com.leclowndu93150.boids.forge;
 
 import com.leclowndu93150.boids.Boids;
-import com.leclowndu93150.boids.config.BoidsConfigScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.ConfigScreenHandler;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import static net.minecraft.commands.Commands.literal;
 
@@ -18,10 +17,9 @@ public class BoidsForge {
     public BoidsForge() {
         MinecraftForge.EVENT_BUS.register(this);
 
-        ModLoadingContext.get().registerExtensionPoint(
-            ConfigScreenHandler.ConfigScreenFactory.class,
-            () -> new ConfigScreenHandler.ConfigScreenFactory(BoidsConfigScreen::create)
-        );
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            BoidsForgeClient.init();
+        }
     }
 
     @SubscribeEvent

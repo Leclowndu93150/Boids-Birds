@@ -20,10 +20,10 @@ prism {
             credit("Tomate0613")
         }
 
-        version = "1.0.3"
+        version = "1.0.4"
 
         publishing {
-            changelog = "add support for a lot of modded fishes !"
+            changelog = "fix dedicated server crash from client-only config screen classloading"
             type = STABLE
 
             publishCommonJar = true
@@ -129,7 +129,7 @@ prism {
 
     mod("birds") {
 
-        version = "1.0.2"
+        version = "1.0.3"
 
         metadata {
             modId = "birds"

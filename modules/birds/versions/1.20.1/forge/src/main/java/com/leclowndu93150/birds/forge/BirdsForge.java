@@ -2,10 +2,7 @@ package com.leclowndu93150.birds.forge;
 
 import com.leclowndu93150.birds.Birds;
 import com.leclowndu93150.birds.config.BirdsConfig;
-import com.leclowndu93150.birds.config.BirdsConfigScreen;
 import com.leclowndu93150.birds.entities.bird.Bird;
-import com.leclowndu93150.birds.entities.bird.BirdModel;
-import com.leclowndu93150.birds.entities.bird.BirdRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -19,19 +16,18 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
-import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -74,16 +70,13 @@ public class BirdsForge {
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        ModLoadingContext.get().registerExtensionPoint(
-            ConfigScreenHandler.ConfigScreenFactory.class,
-            () -> new ConfigScreenHandler.ConfigScreenFactory(BirdsConfigScreen::create)
-        );
-
         modBus.addListener(this::onEntityAttributeCreation);
-        modBus.addListener(this::onRegisterRenderers);
-        modBus.addListener(this::onRegisterLayerDefinitions);
         modBus.addListener(this::onSpawnPlacementRegister);
         modBus.addListener(this::onBuildCreativeTabContents);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            BirdsForgeClient.init(modBus);
+        }
     }
 
     @SubscribeEvent
@@ -95,14 +88,6 @@ public class BirdsForge {
         event.put(BIRD.get(), Bird.createMobAttributes().build());
         Birds.BIRD = BIRD.get();
         Birds.BIRD_ITEM = BIRD_SPAWN_EGG.get();
-    }
-
-    private void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(BIRD.get(), BirdRenderer::new);
-    }
-
-    private void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(BirdModel.LAYER_LOCATION, BirdModel::createBodyLayer);
     }
 
     private void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {

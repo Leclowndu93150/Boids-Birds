@@ -1,12 +1,12 @@
 package com.leclowndu93150.boids.neoforge;
 
 import com.leclowndu93150.boids.Boids;
-import com.leclowndu93150.boids.config.BoidsConfigScreen;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -19,10 +19,9 @@ public class BoidsNeoForge {
         NeoForge.EVENT_BUS.addListener(this::onServerStarting);
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
 
-        container.registerExtensionPoint(
-            IConfigScreenFactory.class,
-            (c, parent) -> BoidsConfigScreen.create(parent)
-        );
+        if (FMLEnvironment.getDist() == Dist.CLIENT) {
+            BoidsNeoForgeClient.init(container);
+        }
     }
 
     private void onServerStarting(ServerStartingEvent event) {

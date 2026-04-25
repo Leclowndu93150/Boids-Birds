@@ -2,10 +2,7 @@ package com.leclowndu93150.birds.neoforge;
 
 import com.leclowndu93150.birds.Birds;
 import com.leclowndu93150.birds.config.BirdsConfig;
-import com.leclowndu93150.birds.config.BirdsConfigScreen;
 import com.leclowndu93150.birds.entities.bird.Bird;
-import com.leclowndu93150.birds.entities.bird.BirdModel;
-import com.leclowndu93150.birds.entities.bird.BirdRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -21,13 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
@@ -73,16 +70,13 @@ public class BirdsNeoForge {
 
         NeoForge.EVENT_BUS.addListener(this::onServerStarting);
 
-        container.registerExtensionPoint(
-            IConfigScreenFactory.class,
-            (c, parent) -> BirdsConfigScreen.create(parent)
-        );
-
         modBus.addListener(this::onEntityAttributeCreation);
-        modBus.addListener(this::onRegisterRenderers);
-        modBus.addListener(this::onRegisterLayerDefinitions);
         modBus.addListener(this::onSpawnPlacementRegister);
         modBus.addListener(this::onBuildCreativeTabContents);
+
+        if (FMLEnvironment.getDist() == Dist.CLIENT) {
+            BirdsNeoForgeClient.init(modBus, container);
+        }
     }
 
     private void onServerStarting(ServerStartingEvent event) {
@@ -93,14 +87,6 @@ public class BirdsNeoForge {
         event.put(BIRD.get(), Bird.createMobAttributes().build());
         Birds.BIRD = BIRD.get();
         Birds.BIRD_ITEM = BIRD_SPAWN_EGG.get();
-    }
-
-    private void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(BIRD.get(), BirdRenderer::new);
-    }
-
-    private void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(BirdModel.LAYER_LOCATION, BirdModel::createBodyLayer);
     }
 
     private void onSpawnPlacementRegister(RegisterSpawnPlacementsEvent event) {
