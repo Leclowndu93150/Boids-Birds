@@ -1,10 +1,12 @@
 package com.leclowndu93150.boids.config;
 
 import dev.isxander.yacl3.api.ConfigCategory;
+import dev.isxander.yacl3.api.ListOption;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
+import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import com.leclowndu93150.boids.Boids;
 import net.minecraft.client.gui.screens.Screen;
@@ -53,6 +55,20 @@ public class BoidsConfigScreen {
                     .description(OptionDescription.of(Component.translatable("boids.config.include_default_fish.desc")))
                     .controller(TickBoxControllerBuilder::create)
                     .binding(defaults.includeDefaultFish, () -> config.includeDefaultFish, v -> config.includeDefaultFish = v)
+                    .build())
+                .group(ListOption.<String>createBuilder()
+                    .name(Component.translatable("boids.config.included_entities"))
+                    .description(OptionDescription.of(Component.translatable("boids.config.included_entities.desc")))
+                    .binding(defaults.includedEntities, () -> config.includedEntities, v -> config.includedEntities = v)
+                    .controller(StringControllerBuilder::create)
+                    .initial("")
+                    .build())
+                .group(ListOption.<String>createBuilder()
+                    .name(Component.translatable("boids.config.exclude_entities"))
+                    .description(OptionDescription.of(Component.translatable("boids.config.exclude_entities.desc")))
+                    .binding(defaults.excludeEntities, () -> config.excludeEntities, v -> config.excludeEntities = v)
+                    .controller(StringControllerBuilder::create)
+                    .initial("")
                     .build())
                 .build())
             .save(() -> {

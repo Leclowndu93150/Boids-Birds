@@ -66,6 +66,10 @@ public class Boids {
         "*shrooma"
     );
 
+    private static final Set<String> DEFAULT_EXCLUDED = Set.of(
+        "silverfish"
+    );
+
     public static void loadConfig() {
         BoidsConfig.HANDLER.load();
         var config = BoidsConfig.HANDLER.instance();
@@ -96,6 +100,9 @@ public class Boids {
         for (EntityType<?> type : BuiltInRegistries.ENTITY_TYPE) {
             ResourceLocation rl = BuiltInRegistries.ENTITY_TYPE.getKey(type);
             String path = rl.getPath();
+            if (DEFAULT_EXCLUDED.contains(path)) {
+                continue;
+            }
             for (String pattern : FISH_PATTERNS) {
                 if (matchesWildcard(pattern, path)) {
                     entities.add(type);

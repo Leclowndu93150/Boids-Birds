@@ -20,10 +20,10 @@ prism {
             credit("Tomate0613")
         }
 
-        version = "1.0.4"
+        version = "1.0.5"
 
         publishing {
-            changelog = "fix dedicated server crash from client-only config screen classloading"
+            changelog = "exclude silverfish from the simulation by default, add included/excluded entity lists to the config screen, and stop out-of-water fish from flying across the ground"
             type = STABLE
 
             publishCommonJar = true

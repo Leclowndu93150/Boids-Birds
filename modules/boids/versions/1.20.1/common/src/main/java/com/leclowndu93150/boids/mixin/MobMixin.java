@@ -46,6 +46,10 @@ public abstract class MobMixin extends LivingEntity implements MobDuck {
             return;
         }
 
+        if (boids$stayInWaterGoal != null && !isInWater()) {
+            return;
+        }
+
         ci.cancel();
 
         addDeltaMovement(Boids.SETTINGS.apply((Mob) (Object) this, boids$nearbyMobs.tick()));

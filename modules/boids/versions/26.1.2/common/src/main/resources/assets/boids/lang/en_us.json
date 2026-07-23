@@ -25,5 +25,9 @@
   "boids.config.max_speed": "Maximum Speed",
   "boids.config.max_speed.desc": "Maximum movement speed for boids.",
   "boids.config.include_default_fish": "Include Default Fish",
-  "boids.config.include_default_fish.desc": "Include salmon, cod, and tropical fish by default."
+  "boids.config.include_default_fish.desc": "Include salmon, cod, and tropical fish by default.",
+  "boids.config.included_entities": "Included Entities",
+  "boids.config.included_entities.desc": "Entity IDs to add to the boids simulation (e.g. minecraft:silverfish).",
+  "boids.config.exclude_entities": "Excluded Entities",
+  "boids.config.exclude_entities.desc": "Entity IDs to remove from the boids simulation (e.g. minecraft:silverfish)."
 }
